@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4" style="font-family: 'Montserrat', sans-serif;">Dashboard</h2>
+    <form method="post" action="/dashboard" class="mb-5">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Post</button>
+    </form>
+    <h3 class="mb-4" style="font-family: 'Montserrat', sans-serif;">Your Posts</h3>
+    <div class="list-group">
+        {% for post in posts %}
+        <div class="list-group-item mb-3" style="border: 1px solid #dee2e6; border-radius: 0.25rem;">
+            <h5 class="list-group-item-heading" style="font-family: 'Montserrat', sans-serif;">{{ post.title }}</h5>
+            <p class="list-group-item-text" style="font-size: 16px; line-height: 1.5;">{{ post.content }}</p>
+            <small class="text-muted">by {{ post.author }}</small>
+            <div class="mt-2">
+                <a href="/posts/{{ post._id }}" class="btn btn-primary btn-sm">View</a>
+                <a href="/posts/{{ post._id }}/edit" class="btn btn-secondary btn-sm">Edit</a>
+                <form method="post" action="/posts/{{ post._id }}/delete" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

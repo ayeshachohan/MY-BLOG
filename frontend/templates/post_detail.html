@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Post Detail{% endblock %}
+{% block content %}
+<div class="mt-5">
+    <h2>Post Detail</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.content }}</p>
+            <a href="/posts/{{ post._id }}/edit" class="btn btn-secondary">Edit</a>
+            <form method="post" action="/posts/{{ post._id }}/delete" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+>
